@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Weather App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Location Photo -->
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/photo.jpg') }}" alt="Location Photo" class="img-fluid rounded">
+        </div>
+    <div class="container mt-5">
+        <h1 id="location" class="text-center"></h1>
+        <h1 class="text-center">Welcome to the Minimal Weather App</h1>
+        <p>Location: {{ location }}</p>
+        <div id="current-weather" class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Current Weather</h5>
+                <p class="card-text">{{ current_weather.description }}</p>
+                <p class="card-text">Temperature: {{ current_weather.temperature }}°C</p>
+                <img class="card-img-top" src="http://openweathermap.org/img/wn/{{ current_weather.icon }}.png" alt="{{ current_weather.description }}">
+            </div>
+        </div>
+        <h2 class="text-center">Five-Day Forecast</h2>
+        <div id="five-day-forecast" class="row">
+            {% for day in forecast %}
+                <div class="col-sm">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ day.main }}</h5>
+                            <p class="card-text">{{ day.description }}</p>
+                            <p class="card-text">Date: {{ day.date }}</p>
+                            <p class="card-text">Temperature: {{ day.temperature }}°C</p>
+                            <img class="card-img-top" src="http://openweathermap.org/img/wn/{{ day.icon }}.png" alt="{{ day.description }}">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+     <!-- Form to enter another city -->
+     <form action="/get_weather" method="post" class="mt-5">
+        <div class="form-group">
+            <label for="location">Enter another city:</label>
+            <input type="text" id="location" name="location" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+    </form>
+</div>
+
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</body>
+</html>

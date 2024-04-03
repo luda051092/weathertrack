@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Weather App</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light text-dark"></body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <div class="alert alert-danger" id="error-message" style="display: none;"></div>
+            </div>
+        <h1 class="text-center">Welcome to the Minimal Weather App</h1>
+
+        <!-- Form for entering location -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-sm-6">
+                <form action="{{ url_for('get_weather') }}" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="location" placeholder="Enter a location">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Get Weather</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="current-weather" class="card mb-4">
+            <!-- Current weather will be dynamically added here -->
+        </div>
+        <h2 class="text-center">Five-Day Forecast</h2>
+        <div id="five-day-forecast" class="row">
+            <!-- Forecast items will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for Bootstrap functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <!-- Script for populating forecast items -->
+    <script>
+    window.onload = function() {
+    fetch('http://localhost:5000/weather')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        // Display current weather
+        var currentWeatherDiv = document.getElementById('current-weather');
+        currentWeatherDiv.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">Current Weather</h5>
+                <p class="card-text">${data.current_weather.description}</p>
+                <p class="card-text">Temperature: ${data.current_weather.temperature}°C</p>
+            </div>
+        `;
+
+        // Display five-day forecast
+        var forecastDiv = document.getElementById('five-day-forecast');
+        data.forecast.forEach(day => {
+            forecastDiv.innerHTML += `
+                <div class="col-sm-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">${day.date}</h5>
+                            <p class="card-text">${day.description}</p>
+                            <p class="card-text">High: ${day.high}°C</p>
+                            <p class="card-text">Low: ${day.low}°C</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    })
+    .catch(error => console.error('Error:', error));
+};
+        
+    </script>
+</body>
+</html>

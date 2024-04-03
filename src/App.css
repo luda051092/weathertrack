@@ -1,0 +1,71 @@
+body {
+  background-color: lightblue;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.App-link {
+  color: #61dafb;
+  text-decoration: none; /* Removes the underline from the link */
+  font-size: 18px; /* Makes the text a bit larger */
+  font-weight: bold; /* Makes the text bold */
+  padding: 10px 20px; /* Adds some padding around the text */
+  border-radius: 5px; /* Rounds the corners of the link */
+  background-color: #282c34; /* Adds a background color */
+  transition: background-color 0.3s ease; /* Animates the background color change */
+}
+
+.App-link:hover {
+  background-color: #61dafb; /* Changes the background color when hovered */
+  color: #282c34; /* Changes the text color when hovered */
+}
+
+.forecast-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1em;
+  gap: 1em;
+}
+
+.forecast-item {
+  flex: 1 0 20%;  /* grow | shrink | basis */
+  max-width: 20%;
+  border: 1px solid #000; /* Add a border */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.input-container input {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #61dafb;
+  color: #282c34;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+  background-color: #282c34;
+  color: #61dafb;
+}

@@ -1,0 +1,46 @@
+/* styles.css */
+
+.weather-icon {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto; /* Center the image */
+}
+
+#current-weather, #five-day-forecast {
+    max-width: 500px; /* Adjust as needed */
+    margin: 0 auto; /* Center the card */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add a shadow to the card */
+    border-radius: 5px; /* Round the corners of the card */
+    margin-bottom: 20px; /* Add some space between cards */
+}
+
+.container {
+    max-width: 500px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add some space around the content */
+}
+
+h1, h5 {
+    text-align: center; /* Center the title */
+    color: #333; /* Change the color of the title */
+    font-family: Arial, sans-serif; /* Change the font of the title */
+}
+
+.card-body {
+    padding: 20px; /* Add some space around the card content */
+}
+
+.card-text {
+    color: #666; /* Change the color of the text */
+    font-size: 14px; /* Change the size of the text */
+}
+
+/* New styles for the forecast */
+#five-day-forecast .card {
+    margin-bottom: 10px; /* Add some space between forecast cards */
+}
+
+#five-day-forecast .card-text {
+    font-size: 12px; /* Make the forecast text a bit smaller */
+}
